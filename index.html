@@ -1,113 +1,145 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain.exe 💀</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
+    <title>🌴 Coconut Fall Prediction System</title>
 
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-    <div class="container">
-
-        <!-- HOME -->
-        <section id="home" class="screen active">
-            <div class="computer">💻</div>
-
-            <h1>Brain.exe</h1>
-            <h2>Has Stopped Working 💀</h2>
-
-            <p>Your brain has encountered an unexpected amount of nonsense.</p>
-
-            <button onclick="startGame()">START BRAIN TEST 🧠</button>
-
-            <div class="status">
-                🟢 Brain connection: questionable
-            </div>
-        </section>
-
-
-        <!-- GAME -->
-        <section id="game" class="screen">
-
-            <div class="top">
-                <span id="gameNumber">Game 1 / 4</span>
-                <span>Score: <b id="score">0</b></span>
-            </div>
-
-            <!-- Reaction Game -->
-            <div id="reactionGame" class="mini-game">
-                <h2>⚡ Reaction Test</h2>
-                <p id="reactionText">Wait for GREEN...</p>
-
-                <button id="reactionButton" onclick="reactionClick()">
-                    WAIT...
-                </button>
-            </div>
-
-
-            <!-- Math Game -->
-            <div id="mathGame" class="mini-game hidden">
-                <h2>🧮 Useless Math</h2>
-                <p>Why are you doing mathematics voluntarily? 😭</p>
-
-                <h3 id="question"></h3>
-
-                <input id="answer" type="number" placeholder="Your answer">
-
-                <button onclick="checkAnswer()">SUBMIT</button>
-            </div>
-
-
-            <!-- Memory Game -->
-            <div id="memoryGame" class="mini-game hidden">
-                <h2>🧠 Memory Test</h2>
-
-                <p id="memoryText">Remember these emojis!</p>
-
-                <div id="emojis"></div>
-
-                <input id="memoryAnswer"
-                       placeholder="Type emojis in order">
-
-                <button onclick="checkMemory()">CHECK</button>
-            </div>
-
-
-            <!-- Button Game -->
-            <div id="buttonGame" class="mini-game hidden">
-                <h2>🎯 Find the Useless Button</h2>
-
-                <p>Find the correct button!</p>
-
-                <div id="buttons"></div>
-            </div>
-
-        </section>
-
-
-        <!-- RESULT -->
-        <section id="result" class="screen">
-
-            <div class="brain">🧠</div>
-
-            <h1>Brain Analysis Complete!</h1>
-
-            <h2 id="finalResult"></h2>
-
-            <p>Your final score:</p>
-
-            <div class="final-score" id="finalScore">0</div>
-
-            <button onclick="location.reload()">
-                PLAY AGAIN 🔄
-            </button>
-
-        </section>
-
+    <!-- Dynamic Animated Background & Atmosphere -->
+    <div class="sky" id="sky">
+        <div class="sun-glow"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
     </div>
+
+    <!-- Header Section -->
+    <header class="hero">
+        <div class="hero-emoji">🌴</div>
+        <h1 class="title">🌴 Coconut&nbsp;Fall&nbsp;Prediction&nbsp;System</h1>
+        <p class="subtitle">Predicting what nature already knows.</p>
+        <span class="badge">ACADEMICALLY IMPORTANT &nbsp;•&nbsp; ZERO PRACTICAL VALUE</span>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="container">
+
+        <!-- 1) INPUT CARD -->
+        <section class="card glass">
+            <h2 class="card-title">📡 Input Parameters</h2>
+
+            <div class="input-group">
+                <label for="treeHeight">🌳 Tree Height (meters)</label>
+                <input type="number" id="treeHeight" placeholder="e.g. 12" min="0" step="0.1" value="12">
+            </div>
+
+            <div class="input-group">
+                <label for="coconutCount">🥥 Number of Coconuts</label>
+                <input type="number" id="coconutCount" placeholder="e.g. 7" min="0" value="7">
+            </div>
+
+            <div class="input-group">
+                <label for="windLevel">💨 Wind Level</label>
+                <select id="windLevel">
+                    <option value="low">Low (Gentle Breeze)</option>
+                    <option value="medium" selected>Medium (Suspicious Rustle)</option>
+                    <option value="high">High (Chaos Mode)</option>
+                </select>
+            </div>
+
+            <button id="predictBtn" class="btn-primary">🥥 Predict Coconut Fall</button>
+
+            <!-- Scanner overlay during computation -->
+            <div id="analyzing" class="analyzing hidden">
+                <div class="analyzing-dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <div class="analyzing-text">CALCULATING GRAVITATIONAL REGRET...</div>
+                <div class="scanner"></div>
+            </div>
+        </section>
+
+        <!-- 2) ANIMATED SCENE -->
+        <section class="card glass scene" aria-hidden="true">
+            <div class="sun"></div>
+            <div class="palm" id="palmTree">🌴</div>
+            <div class="coconut" id="coconut">🥥</div>
+            <div class="ground"></div>
+            <div class="scene-caption">LIVE SATELLITE FEED • COCONUT ORBITAL TRACKER v2.4</div>
+        </section>
+
+        <!-- 3) RESULTS CARD -->
+        <section id="results" class="card glass hidden">
+            <h2 class="card-title">📊 Prediction Results</h2>
+            <div class="result-grid">
+                <div class="stat">
+                    <span class="stat-label">Fall Probability</span>
+                    <span class="stat-value" id="probability">--%</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Predicted Fall Time</span>
+                    <span class="stat-value big" id="fallTime">--</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Scientific Confidence</span>
+                    <span class="stat-value" id="confidence">--%</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Tree Mood</span>
+                    <span class="stat-value mood" id="treeMood">🌴 ...</span>
+                </div>
+            </div>
+            <p class="explanation" id="explanation">Waiting for the tree to speak…</p>
+        </section>
+
+        <!-- 4) OFFICIAL REPORT -->
+        <section class="card glass">
+            <h2 class="card-title">🗒️ Coconut Report (Official)</h2>
+            <div class="result-grid">
+                <div class="stat">
+                    <span class="stat-label">Coconuts Analyzed</span>
+                    <span class="stat-value" id="analyzed">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Fall Probability</span>
+                    <span class="stat-value" id="reportProb">--%</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Scientific Confidence</span>
+                    <span class="stat-value" id="reportConf">--%</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Uselessness</span>
+                    <span class="stat-value" id="reportUseless">--%</span>
+                </div>
+            </div>
+            <div class="bar">
+                <div class="bar-fill" id="uselessBar"></div>
+            </div>
+        </section>
+
+        <!-- 5) FINAL HUMOROUS REMARK -->
+        <p class="final-message hidden" id="finalMessage">
+            Congratulations! You successfully predicted something that may never happen. 😂
+        </p>
+
+        <footer class="footer">
+            Built with 🥥 and questionable science &nbsp;•&nbsp; Useless Project Competition 2026
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>
