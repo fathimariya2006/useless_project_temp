@@ -1,1 +1,114 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain.exe 💀</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HOME -->
+        <section id="home" class="screen active">
+            <div class="computer">💻</div>
+
+            <h1>Brain.exe</h1>
+            <h2>Has Stopped Working 💀</h2>
+
+            <p>Your brain has encountered an unexpected amount of nonsense.</p>
+
+            <button onclick="startGame()">START BRAIN TEST 🧠</button>
+
+            <div class="status">
+                🟢 Brain connection: questionable
+            </div>
+        </section>
+
+
+        <!-- GAME -->
+        <section id="game" class="screen">
+
+            <div class="top">
+                <span id="gameNumber">Game 1 / 4</span>
+                <span>Score: <b id="score">0</b></span>
+            </div>
+
+            <!-- Reaction Game -->
+            <div id="reactionGame" class="mini-game">
+                <h2>⚡ Reaction Test</h2>
+                <p id="reactionText">Wait for GREEN...</p>
+
+                <button id="reactionButton" onclick="reactionClick()">
+                    WAIT...
+                </button>
+            </div>
+
+
+            <!-- Math Game -->
+            <div id="mathGame" class="mini-game hidden">
+                <h2>🧮 Useless Math</h2>
+                <p>Why are you doing mathematics voluntarily? 😭</p>
+
+                <h3 id="question"></h3>
+
+                <input id="answer" type="number" placeholder="Your answer">
+
+                <button onclick="checkAnswer()">SUBMIT</button>
+            </div>
+
+
+            <!-- Memory Game -->
+            <div id="memoryGame" class="mini-game hidden">
+                <h2>🧠 Memory Test</h2>
+
+                <p id="memoryText">Remember these emojis!</p>
+
+                <div id="emojis"></div>
+
+                <input id="memoryAnswer"
+                       placeholder="Type emojis in order">
+
+                <button onclick="checkMemory()">CHECK</button>
+            </div>
+
+
+            <!-- Button Game -->
+            <div id="buttonGame" class="mini-game hidden">
+                <h2>🎯 Find the Useless Button</h2>
+
+                <p>Find the correct button!</p>
+
+                <div id="buttons"></div>
+            </div>
+
+        </section>
+
+
+        <!-- RESULT -->
+        <section id="result" class="screen">
+
+            <div class="brain">🧠</div>
+
+            <h1>Brain Analysis Complete!</h1>
+
+            <h2 id="finalResult"></h2>
+
+            <p>Your final score:</p>
+
+            <div class="final-score" id="finalScore">0</div>
+
+            <button onclick="location.reload()">
+                PLAY AGAIN 🔄
+            </button>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
